@@ -85,13 +85,11 @@ def compare_performance():
     for size in sizes:
         prefixes = generate_prefixes(size)
 
-        # Medir tempo da busca linear
         start_time = time.time()
         linear_result = linear_search(test_ip, prefixes)
         linear_time = time.time() - start_time
         linear_times.append(linear_time)
 
-        # Medir tempo da busca Trie
         trie_root = build_trie(prefixes)
         start_time = time.time()
         trie_result = trie_search(test_ip, trie_root)
@@ -103,7 +101,6 @@ def compare_performance():
         print(f"  Tempo da busca Trie: {trie_time:.6f} segundos")
         print(f"  A busca Trie é {linear_time / trie_time:.2f}x mais rápida")
 
-    # Gerar gráfico
     plt.figure(figsize=(10, 6))
     plt.plot(sizes, linear_times, marker='o', label='Busca Linear')
     plt.plot(sizes, trie_times, marker='s', label='Busca Trie')
